@@ -1,0 +1,333 @@
+:root {
+  --ink: #3a2f4f;
+  --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', STSong, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: #f3a0a8;
+}
+
+#app {
+  --bg-top: #ffe3cf;
+  --bg-bottom: #f3a0a8;
+  --glow: #fff6dc;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  transition: background 0.6s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: min(70vw, 70vh);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow) 0%, transparent 68%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+#stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+}
+
+.pill,
+.round {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(40, 20, 60, 0.12);
+  transition: transform 0.15s, background 0.15s;
+}
+
+.pill {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+.round {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.pill:active,
+.round:active,
+.cta:active,
+.level-card:not(:disabled):active {
+  transform: scale(0.94);
+}
+
+#hud {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  left: 14px;
+  right: 66px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+#hud button {
+  pointer-events: auto;
+}
+
+#level-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 19px;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  color: var(--ink);
+}
+
+#btn-mute {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 14px;
+  z-index: 5;
+}
+
+#btn-mute.muted {
+  color: rgba(58, 47, 79, 0.35);
+  text-decoration: line-through;
+}
+
+#hint {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+#app.dark #level-title,
+#app.dark #hint {
+  color: #fff;
+}
+
+#toast {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px 30px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  box-shadow: 0 8px 30px rgba(40, 20, 60, 0.2);
+  animation: rise 0.5s ease-out both;
+  pointer-events: none;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px;
+  text-align: center;
+  background: linear-gradient(180deg, #ffe9d6, #f5a9ad 60%, #b98ac0);
+  animation: fade 0.45s ease-out both;
+}
+
+#screen-end {
+  background: linear-gradient(180deg, #2f2a5a, #8a5a98 60%, #f0a59c);
+  color: #fff;
+}
+
+.screen h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(54px, 14vw, 92px);
+  letter-spacing: 0.25em;
+  text-indent: 0.25em;
+}
+
+.screen h2 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+}
+
+.sub {
+  margin: 0 0 14px;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+}
+
+.cta {
+  min-width: 168px;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 26px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 17px;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  box-shadow: 0 8px 24px rgba(40, 20, 60, 0.28);
+  transition: transform 0.15s;
+}
+
+#screen-end .cta {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* 三块错开的菱形：一格一格的台阶 */
+.emblem {
+  position: relative;
+  width: 96px;
+  height: 84px;
+  margin-bottom: 4px;
+}
+
+.emblem i {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg) skew(12deg, 12deg);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(58, 47, 79, 0.28);
+}
+
+.emblem i:nth-child(1) {
+  left: 2px;
+  top: 40px;
+}
+
+.emblem i:nth-child(2) {
+  left: 28px;
+  top: 22px;
+  background: #ffcf7a;
+}
+
+.emblem i:nth-child(3) {
+  left: 54px;
+  top: 4px;
+}
+
+#level-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.level-card {
+  width: 104px;
+  height: 138px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(180deg, var(--c1), var(--c2));
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(40, 20, 60, 0.4);
+  box-shadow: 0 10px 26px rgba(40, 20, 60, 0.22);
+  transition: transform 0.15s;
+}
+
+.level-card .num {
+  font-family: var(--serif);
+  font-size: 40px;
+}
+
+.level-card .name {
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+}
+
+.level-card:disabled {
+  background: rgba(255, 255, 255, 0.35);
+  color: rgba(58, 47, 79, 0.45);
+  text-shadow: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen,
+  #toast {
+    animation: none;
+  }
+}
