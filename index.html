@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#f3a0a8" />
+    <title>回廊</title>
+    <script type="module" crossorigin src="./assets/index-CO0sGxew.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Ea6MNw-M.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="glow"></div>
+      <canvas id="stage"></canvas>
+
+      <header id="hud" class="hidden">
+        <button id="btn-back" class="pill">‹ 选关</button>
+        <div id="level-title"></div>
+        <button id="btn-reset" class="round" aria-label="重置本关" title="重置本关">↺</button>
+      </header>
+      <p id="hint" class="hidden"></p>
+      <div id="toast" class="hidden"></div>
+
+      <section id="screen-title" class="screen">
+        <div class="emblem"><i></i><i></i><i></i></div>
+        <h1>回廊</h1>
+        <p class="sub">看起来连着的路，就是连着的</p>
+        <button id="btn-start" class="cta">开始</button>
+      </section>
+
+      <section id="screen-select" class="screen hidden">
+        <h2>选择关卡</h2>
+        <div id="level-list"></div>
+        <button id="btn-home" class="pill">‹ 返回</button>
+      </section>
+
+      <section id="screen-end" class="screen hidden">
+        <div class="emblem"><i></i><i></i><i></i></div>
+        <h1>回廊尽头</h1>
+        <p class="sub">三段路都走通了。灯还亮着。</p>
+        <button id="btn-again" class="cta">再走一遍</button>
+      </section>
+
+      <button id="btn-mute" class="round" aria-label="静音" title="静音">♪</button>
+    </div>
+  </body>
+</html>
