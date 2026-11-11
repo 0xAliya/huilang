@@ -1,8 +1,7 @@
 name: Deploy to GitHub Pages
 
+# 账号的 Actions 暂不可用，日常用 ./deploy.sh 发布；这里只保留手动触发
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
